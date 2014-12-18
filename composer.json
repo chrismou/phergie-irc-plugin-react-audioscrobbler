@@ -1,7 +1,8 @@
 {
     "name": "chrismou/phergie-irc-plugin-react-audioscrobbler",
-    "description": "Phergie plugin for returning the current or last played song for a user on last.fm",
+    "description": "Phergie plugin for returning the current or last played song for a user on last.fm or libre.fm",
     "keywords": [ "phergie", "irc", "bot", "plugin" ],
+    "homepage": "http://github.com/chrismou/phergie-irc-plugin-react-audioscrobbler",
     "license": "BSD-2-Clause",
     "support": {
         "email": "phergie@mou.me.uk",
@@ -20,10 +21,7 @@
     "require-dev": {
         "phpunit/phpunit": "4.1.*",
         "phake/phake": "2.0.0-beta2",
-        "codeclimate/php-test-reporter": "dev-master",
-        "phergie/phergie-irc-plugin-react-pong": "dev-master",
-        "phergie/phergie-irc-plugin-react-autojoin": "1.0.*",
-        "phergie/phergie-irc-plugin-react-commandhelp": "dev-master"
+        "codeclimate/php-test-reporter": "dev-master"
     },
     "suggest": {
         "phergie/phergie-irc-plugin-react-commandhelp": "provides interactive help for commands"

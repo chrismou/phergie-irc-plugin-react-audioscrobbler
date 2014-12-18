@@ -1,9 +1,23 @@
 <?php
+/**
+ * Phergie plugin for returning the current or last played song for a user on last.fm or libre.fm (https://github.com/chrismou/phergie-irc-plugin-react-audioscrobbler)
+ *
+ * @link https://github.com/chrismou/phergie-irc-plugin-react-audioscrobbler for the canonical source repository
+ * @copyright Copyright (c) 2014 Chris Chrisostomou (http://mou.me)
+ * @license http://phergie.org/license New BSD License
+ * @package Chrismou\Phergie\Plugin\Audioscrobbler
+ */
 
 namespace Chrismou\Phergie\Plugin\Audioscrobbler\Provider;
 
 use Phergie\Irc\Plugin\React\Command\CommandEvent as Event;
 
+/**
+ * LastFM provider for the Audioscrobbler plugin for Phergie
+ *
+ * @category Chrismou
+ * @package Chrismou\Phergie\Plugin\Audioscrobbler\Provider
+ */
 class Lastfm implements AudioscrobblerProviderInterface
 {
     /**
@@ -12,23 +26,22 @@ class Lastfm implements AudioscrobblerProviderInterface
     protected $apiUrl = 'http://ws.audioscrobbler.com/2.0/';
 
     /**
-     * @param string $config
+     * @param string $apiKey
      */
-    function __construct($config)
-    {
-
+    function __construct($apiKey) {
+        $this->apiKey = $apiKey;
     }
 
     /**
-     * Validate the provided config
+     * Validate the provided parameters
      *
-     * @param array $config
+     * @param array $params
      * @return true|false
      */
     public static function validateConfig($config)
     {
-        // No API key required
-        return true;
+        // Requires an API key
+        return ($config) ? true : false;
     }
 
     /**
@@ -55,6 +68,7 @@ class Lastfm implements AudioscrobblerProviderInterface
 
         $querystringParams = array(
             'format' => 'json',
+            'api_key' => $this->apiKey,
             'method' => 'user.getrecenttracks',
             'user' => $user,
             'limit' => '1'
@@ -78,12 +92,12 @@ class Lastfm implements AudioscrobblerProviderInterface
         if (isset($response->recenttracks)) { // results?
             $track = (is_array($response->recenttracks->track)) ? $response->recenttracks->track[0] : $response->recenttracks->track;
             $messages = array(sprintf(
-                "%s %s listening to %s by %s [ %s ]",
+                "%s %s listening to %s by %s %s[ %s ]",
                 $response->recenttracks->{'@attr'}->user,
                 (isset($track->{'@attr'}->nowplaying)) ? "is" : "was",
                 $track->name,
                 $track->artist->{'#text'},
-                (!isset($track->{'@attr'}->nowplaying)) ? age($track->date->{'#text'}) : "",
+                (!isset($track->{'@attr'}->nowplaying)) ? age($track->date->uts)."ago " : "",
                 $track->url
             ));
         } else {

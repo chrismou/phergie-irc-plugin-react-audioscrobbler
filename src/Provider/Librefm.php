@@ -1,9 +1,23 @@
 <?php
+/**
+ * Phergie plugin for returning the current or last played song for a user on last.fm or libre.fm (https://github.com/chrismou/phergie-irc-plugin-react-audioscrobbler)
+ *
+ * @link https://github.com/chrismou/phergie-irc-plugin-react-audioscrobbler for the canonical source repository
+ * @copyright Copyright (c) 2014 Chris Chrisostomou (http://mou.me)
+ * @license http://phergie.org/license New BSD License
+ * @package Chrismou\Phergie\Plugin\Audioscrobbler
+ */
 
 namespace Chrismou\Phergie\Plugin\Audioscrobbler\Provider;
 
 use Phergie\Irc\Plugin\React\Command\CommandEvent as Event;
 
+/**
+ * LibreFM provider for the Audioscrobbler plugin for Phergie
+ *
+ * @category Chrismou
+ * @package Chrismou\Phergie\Plugin\Audioscrobbler\Provider
+ */
 class Librefm implements AudioscrobblerProviderInterface
 {
     /**
@@ -78,11 +92,12 @@ class Librefm implements AudioscrobblerProviderInterface
         if (isset($response->recenttracks)) { // results?
             $track = (is_array($response->recenttracks->track)) ? $response->recenttracks->track[0] : $response->recenttracks->track;
             $messages = array(sprintf(
-                "%s %s listening to %s by %s [ %s ]",
+                "%s %s listening to %s by %s %s[ %s ]",
                 $response->recenttracks->{'@attr'}->user,
                 (isset($track->{'@attr'}->nowplaying)) ? "is" : "was",
                 $track->name,
                 $track->artist->{'#text'},
+                (!isset($track->{'@attr'}->nowplaying)) ? age($track->date->uts)."ago " : "",
                 $track->url
             ));
         } else {

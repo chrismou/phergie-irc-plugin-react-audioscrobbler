@@ -1,6 +1,6 @@
 <?php
 /**
- * Phergie plugin for returning the current or last played song for a user on last.fm (https://github.com/chrismou/phergie-irc-plugin-react-audioscrobbler)
+ * Phergie plugin for returning the current or last played song for a user on last.fm or libre.fm (https://github.com/chrismou/phergie-irc-plugin-react-audioscrobbler)
  *
  * @link https://github.com/chrismou/phergie-irc-plugin-react-audioscrobbler for the canonical source repository
  * @copyright Copyright (c) 2014 Chris Chrisostomou (http://mou.me)

@@ -6,6 +6,10 @@
 [![Code Climate](https://codeclimate.com/github/chrismou/phergie-irc-plugin-react-audioscrobbler/badges/gpa.svg)](https://codeclimate.com/github/chrismou/phergie-irc-plugin-react-audioscrobbler)
 [![Test Coverage](https://codeclimate.com/github/chrismou/phergie-irc-plugin-react-audioscrobbler/badges/coverage.svg)](https://codeclimate.com/github/chrismou/phergie-irc-plugin-react-audioscrobbler)
 
+## About
+[Phergie](http://github.com/phergie/phergie-irc-bot-react/) plugin for returning the current or last played song for a user on 
+last.fm or libre.fm.  By default, the plugin responds to the commands "lastfm username" and "librefm username" (without the quotes).
+
 ## Install
 
 The recommended method of installation is [through composer](http://getcomposer.org).
@@ -23,11 +27,12 @@ See Phergie documentation for more information on
 
 ## Configuration
 
+For last.fm lookups, you need a free API key which you can get from [here](http://www.last.fm/api). 
+LibreFM works out of the box.
+
 ```php
 new \Chrismou\Phergie\Plugin\Audioscrobbler\Plugin(array(
-
-
-
+    'lastfm' => 'YOUR_API_KEY'
 ))
 ```
 
