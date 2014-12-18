@@ -72,6 +72,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
         $this->doResolveNoResultsTest(file_get_contents(__DIR__.'/_data/LastfmNoResults.json'), $httpConfig);
         $this->doRejectTest($httpConfig);
         $this->doCommandHelpTest();
+        $this->doCommandInvalidParamsTest(array());
 
     }
 
@@ -86,6 +87,23 @@ class PluginTest extends \PHPUnit_Framework_TestCase
         $this->verifyHttpConfig($httpConfig);
         $request = reset($httpConfig);
         return $request->getConfig();
+    }
+
+    /**
+     * Tests handleCommand() is doing what it's supposed to
+     * @return array $httpConfig
+     */
+    protected function doCommandInvalidParamsTest(array $params=array())
+    {
+        $this->event->setCustomParams($params);
+        $this->plugin->handleCommand($this->event, $this->queue);
+
+        $helpLines = $this->getProvider()->getHelpLines();
+        $this->assertInternalType('array', $helpLines);
+
+        foreach ((array)$helpLines as $responseLine) {
+            Phake::verify($this->queue)->ircPrivmsg('#channel', $responseLine);
+        }
     }
 
     /**
