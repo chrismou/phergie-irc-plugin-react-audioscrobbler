@@ -2,7 +2,9 @@
 
 [Phergie](http://github.com/phergie/phergie-irc-bot-react/) plugin for returning the current or last played song for a user on last.fm or libre.fm.
 
-[![Build Status](https://secure.travis-ci.org/chrismou/phergie-irc-plugin-react-audioscrobbler.png?branch=master)](http://travis-ci.org/chrismou/phergie-irc-plugin-react-audioscrobbler)
+[![Build Status](https://travis-ci.org/chrismou/phergie-irc-plugin-react-audioscrobbler.svg?branch=master)](https://travis-ci.org/chrismou/phergie-irc-plugin-react-audioscrobbler)
+[![Code Climate](https://codeclimate.com/github/chrismou/phergie-irc-plugin-react-audioscrobbler/badges/gpa.svg)](https://codeclimate.com/github/chrismou/phergie-irc-plugin-react-audioscrobbler)
+[![Test Coverage](https://codeclimate.com/github/chrismou/phergie-irc-plugin-react-audioscrobbler/badges/coverage.svg)](https://codeclimate.com/github/chrismou/phergie-irc-plugin-react-audioscrobbler)
 
 ## Install
 
