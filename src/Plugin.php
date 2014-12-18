@@ -36,7 +36,8 @@ class Plugin extends AbstractPlugin
      * @var array
      */
     protected $supportedProviders = array(
-        "lastfm"    => "Chrismou\\Phergie\\Plugin\\Audioscrobbler\\Provider\\Lastfm"
+        "lastfm"    => "Chrismou\\Phergie\\Plugin\\Audioscrobbler\\Provider\\Lastfm",
+        "librefm"   => "Chrismou\\Phergie\\Plugin\\Audioscrobbler\\Provider\\Librefm"
     );
 
     /**
@@ -51,8 +52,9 @@ class Plugin extends AbstractPlugin
     public function __construct(array $config = array())
     {
         foreach($this->supportedProviders as $provider => $class) {
-            if ($class::validateConfig(isset($config[$provider])?$config[$provider]:null))
-                $this->validProviders[$provider] = new $class($config[$provider]);
+            $providerConfig = isset($config[$provider])?$config[$provider]:null;
+            if ($class::validateConfig($providerConfig))
+                $this->validProviders[$provider] = new $class($providerConfig);
         }
     }
 

@@ -4,12 +4,12 @@ namespace Chrismou\Phergie\Plugin\Audioscrobbler\Provider;
 
 use Phergie\Irc\Plugin\React\Command\CommandEvent as Event;
 
-class Lastfm implements AudioscrobblerProviderInterface
+class Librefm implements AudioscrobblerProviderInterface
 {
     /**
      * @var string
      */
-    protected $apiUrl = 'http://ws.audioscrobbler.com/2.0/';
+    protected $apiUrl = 'https://libre.fm/2.0/';
 
     /**
      * @param string $config
@@ -83,7 +83,6 @@ class Lastfm implements AudioscrobblerProviderInterface
                 (isset($track->{'@attr'}->nowplaying)) ? "is" : "was",
                 $track->name,
                 $track->artist->{'#text'},
-                (!isset($track->{'@attr'}->nowplaying)) ? age($track->date->{'#text'}) : "",
                 $track->url
             ));
         } else {
@@ -103,7 +102,7 @@ class Lastfm implements AudioscrobblerProviderInterface
      */
     public function getNoResultsLines(Event $event, $apiResponse)
     {
-        return array('This user does not exist on last.fm');
+        return array('This user does not exist on libre.fm');
     }
 
     /**

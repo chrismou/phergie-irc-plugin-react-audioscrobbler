@@ -62,7 +62,10 @@ class PluginTest extends \PHPUnit_Framework_TestCase
         $this->assertInternalType('array', $plugin->getSubscribedEvents());
     }
 
-    public function testLastFmCommand()
+    /**
+     * Perform tests for the lastfm command
+     */
+    public function testLastfmCommand()
     {
         $this->plugin = $this->getPlugin();
         Phake::when($this->event)->getCustomCommand()->thenReturn("lastfm");
@@ -73,7 +76,22 @@ class PluginTest extends \PHPUnit_Framework_TestCase
         $this->doRejectTest($httpConfig);
         $this->doCommandHelpTest();
         $this->doCommandInvalidParamsTest(array());
+    }
 
+    /**
+     * Perform tests for the lastfm command
+     */
+    public function testLibrefmCommand()
+    {
+        $this->plugin = $this->getPlugin();
+        Phake::when($this->event)->getCustomCommand()->thenReturn("librefm");
+        Phake::when($this->event)->getCustomParams()->thenReturn(array("chrismou"));
+        $httpConfig = $this->doCommandTest();
+        $this->doResolveTest(file_get_contents(__DIR__.'/_data/LibrefmResults.json'), $httpConfig);
+        $this->doResolveNoResultsTest(file_get_contents(__DIR__.'/_data/LibrefmNoResults.json'), $httpConfig);
+        $this->doRejectTest($httpConfig);
+        $this->doCommandHelpTest();
+        $this->doCommandInvalidParamsTest(array());
     }
 
     /**
@@ -248,7 +266,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     /**
      * A shortcut for grabbing the provider from the plugin
      *
-     * @return \Chrismou\Phergie\Plugin\Audioscrobbler\Plugin
+     * @return mixed
      */
     protected function getProvider()
     {

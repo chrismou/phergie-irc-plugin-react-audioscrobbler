@@ -1,0 +1,30 @@
+{
+
+    "recenttracks": {
+        "track": {
+            "artist": {
+                "#text": "Mr.Henky",
+                "mbid": ""
+            },
+            "name": "First Star",
+            "mbid": "",
+            "album": {
+                "#text": "Stars",
+                "mbid": ""
+            },
+            "url": "https://libre.fm/artist/Mr.Henky/album/Stars/track/First+Star",
+            "date": {
+                "#text": "09 Jan 2014 02:39 GMT",
+                "uts": "1389235177"
+            },
+            "streamable": ""
+        },
+        "@attr": {
+            "user": "kabniel",
+            "page": "1",
+            "perPage": "1",
+            "totalPages": "35229"
+        }
+    }
+
+}
