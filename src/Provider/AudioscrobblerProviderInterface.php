@@ -7,6 +7,15 @@ use Phergie\Irc\Plugin\React\Command\CommandEvent;
 interface AudioscrobblerProviderInterface
 {
     /**
+     * Validate the provided parameters
+     *
+     * @param array $params
+     *
+     * @return true|false
+     */
+    static function validateConfig($config);
+
+    /**
      * Return the url for the API request
      *
      * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event

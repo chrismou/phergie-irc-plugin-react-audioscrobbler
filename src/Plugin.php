@@ -14,7 +14,7 @@ use Phergie\Irc\Bot\React\AbstractPlugin;
 use Phergie\Irc\Bot\React\EventQueueInterface as Queue;
 use Phergie\Irc\Plugin\React\Command\CommandEvent as Event;
 use WyriHaximus\Phergie\Plugin\Http\Request as HttpRequest;
-use Chrismou\Phergie\Plugin\Audioscrobbler\Provider as Provider;
+use Chrismou\Phergie\Plugin\Audioscrobbler\Provider;
 
 
 /**
@@ -26,9 +26,18 @@ use Chrismou\Phergie\Plugin\Audioscrobbler\Provider as Provider;
 class Plugin extends AbstractPlugin
 {
     /**
-     * @var Provider\AudioscrobblerProviderInterface
+     * Populated with valid providers at runtime
+     * @var array
      */
-    protected $lastfmProvider;
+    protected $validProviders = array();
+
+    /**
+     * All providers
+     * @var array
+     */
+    protected $supportedProviders = array(
+        "lastfm"    => "Chrismou\\Phergie\\Plugin\\Audioscrobbler\\Provider\\Lastfm"
+    );
 
     /**
      * Accepts plugin configuration.
@@ -41,7 +50,10 @@ class Plugin extends AbstractPlugin
      */
     public function __construct(array $config = array())
     {
-        $this->lastfmProvider = (isset($config['lastfmApiKey'])) ? new Provider\Lastfm($config['lastfmApiKey']) : false;
+        foreach($this->supportedProviders as $provider => $class) {
+            if ($class::validateConfig(isset($config[$provider])?$config[$provider]:null))
+                $this->validProviders[$provider] = new $class($config[$provider]);
+        }
     }
 
     /**
@@ -51,26 +63,21 @@ class Plugin extends AbstractPlugin
      */
     public function getSubscribedEvents()
     {
-        return array(
-            'command.lastfm' => 'handleLastfmCommand'
-        );
+        $subscribedEvents = array();
+        foreach ($this->validProviders as $provider => $class) {
+            $subscribedEvents['command.'.$provider] = 'handleCommand';
+        }
+        return $subscribedEvents;
     }
 
     /**
-     * Handle the lastfm command
+     * Handler for the main commands
      *
      * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
      * @param \Phergie\Irc\Bot\React\EventQueueInterface $queue
      */
-    public function handleLastfmCommand(Event $event, Queue $queue)
-    {
-        if (!$this->lastfmProvider) $this->logger->debug('[audioscrobbler] No Provider');
-        else $this->handleCommand($event, $queue, $this->lastfmProvider);
-
-
-    }
-
-    public function handleCommand(Event $event, Queue $queue, Provider\AudioscrobblerProviderInterface $provider) {
+    public function handleCommand(Event $event, Queue $queue) {
+        $provider = $this->getProvider($event->getCustomCommand());
         if ($provider->validateParams($event->getCustomParams())) {
             $request = $this->getApiRequest($event, $queue, $provider);
             $this->getEventEmitter()->emit('http.request', array($request));
@@ -80,12 +87,13 @@ class Plugin extends AbstractPlugin
     }
 
     /**
-     * Handler for the weather help command
+     * Handler for the help command
      *
      * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
      * @param \Phergie\Irc\Bot\React\EventQueueInterface $queue
      */
-    public function handleCommandHelp(Event $event, Queue $queue, Provider\AudioscrobblerProviderInterface $provider) {
+    public function handleCommandHelp(Event $event, Queue $queue) {
+        $provider = $this->getProvider($event->getCustomCommand());
         $this->sendIrcResponse($event, $queue, $provider->getHelpLines());
     }
 
@@ -97,8 +105,9 @@ class Plugin extends AbstractPlugin
      *
      * @return \WyriHaximus\Phergie\Plugin\Http\Request
      */
-    protected function getApiRequest(Event $event, Queue $queue, Provider\AudioscrobblerProviderInterface $provider)
+    protected function getApiRequest(Event $event, Queue $queue)
     {
+        $provider = $this->getProvider($event->getCustomCommand());
         $self = $this;
         return new HttpRequest(array(
             'url' => $provider->getApiRequestUrl($event, $queue),
@@ -140,26 +149,21 @@ class Plugin extends AbstractPlugin
     /**
      * Return an array of lines to send back to IRC when the request fails
      *
-     * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
-     * @param string $apiError
-     *
      * @return array
      */
-    public function getRejectLines(Event $event, $apiError)
+    public function getRejectLines()
     {
         return array('Something went wrong... ಠ_ಠ');
     }
 
     /**
-     * Return an array of lines to send back to IRC when the request fails
+     * Get a single provider class by command
      *
-     * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
-     * @param string $apiError
-     *
-     * @return array
+     * @param string $command
+     * @return \Chrismou\Phergie\Plugin\Audioscrobbler\Provider\AudioscrobblerProviderInterface $provider|false
      */
-    public function getProvider($prefix)
+    public function getProvider($command)
     {
-        return $this->{$prefix."Provider"};
+        return (isset($this->validProviders[$command])) ? $this->validProviders[$command] : false;
     }
 }

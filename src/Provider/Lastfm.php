@@ -29,6 +29,17 @@ class Lastfm implements AudioscrobblerProviderInterface
      * @param array $params
      * @return true|false
      */
+    public static function validateConfig($config)
+    {
+        return true;
+    }
+
+    /**
+     * Validate the provided parameters
+     *
+     * @param array $params
+     * @return true|false
+     */
     public function validateParams(array $params)
     {
         return (count($params)==1) ? true : false;

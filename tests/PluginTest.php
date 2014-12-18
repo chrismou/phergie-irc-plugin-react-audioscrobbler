@@ -30,11 +30,6 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     protected $plugin;
 
     /**
-     * @var \Chrismou\Phergie\Plugin\Audioscrobbler\Provider\AudioscrobblerProviderInterface
-     */
-    protected $provider;
-
-    /**
      * @var \Phergie\Irc\Plugin\React\Command\CommandEvent
      */
     protected $event;
@@ -63,15 +58,15 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetSubscribedEvents()
     {
-        $plugin = new Plugin;
+        $plugin = $this->getPlugin();
         $this->assertInternalType('array', $plugin->getSubscribedEvents());
     }
 
     public function testLastFmCommand()
     {
-        $this->plugin = $this->getPlugin(array('lastfmApiKey'=>'dummykey'));
-        $this->provider = $this->plugin->getProvider("lastfm");
-
+        $this->plugin = $this->getPlugin();
+        Phake::when($this->event)->getCustomCommand()->thenReturn("lastfm");
+        Phake::when($this->event)->getCustomParams()->thenReturn(array("chrismou"));
         $httpConfig = $this->doCommandTest();
         $this->doResolveTest(file_get_contents(__DIR__.'/_data/LastfmResults.json'), $httpConfig);
         $this->doResolveNoResultsTest(file_get_contents(__DIR__.'/_data/LastfmNoResults.json'), $httpConfig);
@@ -86,8 +81,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      */
     protected function doCommandTest()
     {
-        Phake::when($this->event)->getCustomParams()->thenReturn(array("chrismou"));
-        $this->plugin->handleCommand($this->event, $this->queue, $this->provider);
+        $this->plugin->handleCommand($this->event, $this->queue);
         Phake::verify($this->plugin->getEventEmitter())->emit('http.request', Phake::capture($httpConfig));
         $this->verifyHttpConfig($httpConfig);
         $request = reset($httpConfig);
@@ -103,9 +97,9 @@ class PluginTest extends \PHPUnit_Framework_TestCase
         Phake::when($this->event)->getCommand()->thenReturn('PRIVMSG');
         Phake::when($this->event)->getCustomParams()->thenReturn(array("chrismou"));
 
-        $this->plugin->handleCommandHelp($this->event, $this->queue, $this->provider);
+        $this->plugin->handleCommandHelp($this->event, $this->queue);
 
-        $helpLines = $this->provider->getHelpLines();
+        $helpLines = $this->getProvider()->getHelpLines();
         $this->assertInternalType('array', $helpLines);
 
         foreach ((array)$helpLines as $responseLine) {
@@ -123,7 +117,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     {
         $this->doPreCallbackSetup();
         $callback = $httpConfig['resolveCallback'];
-        $responseLines = $this->provider->getSuccessLines($this->event, $data);
+        $responseLines = $this->getProvider()->getSuccessLines($this->event, $data);
         $this->doPostCallbackTests($data, $callback, $responseLines);
     }
 
@@ -137,7 +131,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     {
         $this->doPreCallbackSetup();
         $callback = $httpConfig['resolveCallback'];
-        $responseLines = $this->provider->getSuccessLines($this->event, $data);
+        $responseLines = $this->getProvider()->getSuccessLines($this->event, $data);
         $this->doPostCallbackTests($data, $callback, $responseLines);
     }
 
@@ -207,7 +201,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\WyriHaximus\Phergie\Plugin\Http\Request', $request);
 
         // Check the url stored by http is the same as what we've called
-        $this->assertSame($this->provider->getApiRequestUrl($this->event), $request->getUrl());
+        $this->assertSame($this->getProvider()->getApiRequestUrl($this->event), $request->getUrl());
 
         // Grab the response config and check the required callbacks exist
         $config = $request->getConfig();
@@ -227,11 +221,22 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      */
     protected function getPlugin(array $config = array())
     {
-        $plugin = new Plugin($config);
+        $plugin = new Plugin(array("lastfm"=>"dummy"));
         $plugin->setEventEmitter(Phake::mock('\Evenement\EventEmitterInterface'));
         $plugin->setLogger(Phake::mock('\Psr\Log\LoggerInterface'));
         return $plugin;
     }
+
+    /**
+     * A shortcut for grabbing the provider from the plugin
+     *
+     * @return \Chrismou\Phergie\Plugin\Audioscrobbler\Plugin
+     */
+    protected function getProvider()
+    {
+        return $this->plugin->getProvider($this->event->getCustomCommand());
+    }
+
 
     /**
      * Returns a mock command event.

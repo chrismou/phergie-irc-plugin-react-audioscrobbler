@@ -58,12 +58,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle3.git",
-                "reference": "eaadef477c9f7fdece3120cd68c38143c0cd4db4"
+                "reference": "47bda5a6b5f566d3d7ea806a0591c2dbd869f9f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/eaadef477c9f7fdece3120cd68c38143c0cd4db4",
-                "reference": "eaadef477c9f7fdece3120cd68c38143c0cd4db4",
+                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/47bda5a6b5f566d3d7ea806a0591c2dbd869f9f3",
+                "reference": "47bda5a6b5f566d3d7ea806a0591c2dbd869f9f3",
                 "shasum": ""
             },
             "require": {
@@ -142,7 +142,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2014-12-11 05:46:03"
+            "time": "2014-12-18 18:45:38"
         },
         {
             "name": "monolog/monolog",
