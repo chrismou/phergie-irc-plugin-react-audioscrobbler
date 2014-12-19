@@ -26,6 +26,11 @@ class Lastfm implements AudioscrobblerProviderInterface
     protected $apiUrl = 'http://ws.audioscrobbler.com/2.0/';
 
     /**
+     * @var string
+     */
+    protected $apiKey = 'http://ws.audioscrobbler.com/2.0/';
+
+    /**
      * @param string $apiKey
      */
     function __construct($apiKey) {
