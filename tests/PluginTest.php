@@ -65,15 +65,13 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      */
     public function testLastfmCommand()
     {
-        $this->plugin = $this->getPlugin();
+
         Phake::when($this->event)->getCustomCommand()->thenReturn("lastfm");
         Phake::when($this->event)->getCustomParams()->thenReturn(array("chrismou"));
         $httpConfig = $this->doCommandTest();
         $this->doResolveTest(file_get_contents(__DIR__.'/_data/LastfmResults.json'), $httpConfig);
         $this->doResolveNoResultsTest(file_get_contents(__DIR__.'/_data/LastfmNoResults.json'), $httpConfig);
         $this->doRejectTest($httpConfig);
-        $this->doCommandHelpTest();
-        $this->doCommandInvalidParamsTest(array());
     }
 
     /**
@@ -81,15 +79,13 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      */
     public function testLibrefmCommand()
     {
-        $this->plugin = $this->getPlugin();
+
         Phake::when($this->event)->getCustomCommand()->thenReturn("librefm");
-        Phake::when($this->event)->getCustomParams()->thenReturn(array("chrismou"));
+        Phake::when($this->event)->getCustomParams()->thenReturn(array("kabniel"));
         $httpConfig = $this->doCommandTest();
         $this->doResolveTest(file_get_contents(__DIR__.'/_data/LibrefmResults.json'), $httpConfig);
         $this->doResolveNoResultsTest(file_get_contents(__DIR__.'/_data/LibrefmNoResults.json'), $httpConfig);
         $this->doRejectTest($httpConfig);
-        $this->doCommandHelpTest();
-        $this->doCommandInvalidParamsTest(array());
     }
 
     /**
@@ -98,10 +94,15 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      */
     protected function doCommandTest()
     {
+        $this->plugin = $this->getPlugin();
         $this->plugin->handleCommand($this->event, $this->queue);
         Phake::verify($this->plugin->getEventEmitter())->emit('http.request', Phake::capture($httpConfig));
         $this->verifyHttpConfig($httpConfig);
         $request = reset($httpConfig);
+        // Test the command help
+        $this->doCommandHelpTest();
+        // Test it's handling invalid parameters correctly
+        $this->doCommandInvalidParamsTest(array());
         return $request->getConfig();
     }
 
