@@ -65,7 +65,6 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      */
     public function testLastfmCommand()
     {
-
         Phake::when($this->event)->getCustomCommand()->thenReturn("lastfm");
         Phake::when($this->event)->getCustomParams()->thenReturn(array("chrismou"));
         $httpConfig = $this->doCommandTest();
@@ -112,14 +111,17 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      */
     protected function doCommandInvalidParamsTest(array $params=array())
     {
-        $this->event->setCustomParams($params);
-        $this->plugin->handleCommand($this->event, $this->queue);
+        // GRab a fresh queue instance to test on
+        $queue = $this->getMockQueue();
+        // Set the "invalid" parameters
+        Phake::when($this->event)->getCustomParams()->thenReturn($params);
+        $this->plugin->handleCommand($this->event, $queue);
 
         $helpLines = $this->getProvider()->getHelpLines();
         $this->assertInternalType('array', $helpLines);
 
         foreach ((array)$helpLines as $responseLine) {
-            Phake::verify($this->queue)->ircPrivmsg('#channel', $responseLine);
+            Phake::verify($queue)->ircPrivmsg('#channel', $responseLine);
         }
     }
 

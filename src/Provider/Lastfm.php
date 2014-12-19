@@ -57,7 +57,7 @@ class Lastfm implements AudioscrobblerProviderInterface
      */
     public function validateParams(array $params)
     {
-        return (count($params)==1) ? true : false;
+        return (count($params)===1) ? true : false;
     }
 
     /**
