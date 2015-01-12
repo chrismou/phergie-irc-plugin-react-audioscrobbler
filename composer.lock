@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3a478c377b0f49b7efa27a52dba5a00a",
+    "hash": "aa1fe56a104726e43a68ff82dff2d68d",
     "packages": [
         {
             "name": "evenement/evenement",
@@ -1084,20 +1084,20 @@
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/codeclimate/php-test-reporter.git",
-                "reference": "2dd8395f81874333d15de3a598f722997ba42fb5"
+                "url": "https://github.com/chrismou/php-test-reporter.git",
+                "reference": "2665fd525828e79e511053c6ee24d6d76bdd39ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codeclimate/php-test-reporter/zipball/2dd8395f81874333d15de3a598f722997ba42fb5",
-                "reference": "2dd8395f81874333d15de3a598f722997ba42fb5",
+                "url": "https://api.github.com/repos/chrismou/php-test-reporter/zipball/2665fd525828e79e511053c6ee24d6d76bdd39ea",
+                "reference": "2665fd525828e79e511053c6ee24d6d76bdd39ea",
                 "shasum": ""
             },
             "require": {
                 "ext-curl": "*",
                 "php": ">=5.3",
                 "satooshi/php-coveralls": "0.6.*",
-                "symfony/console": ">=2.0"
+                "symfony/console": "~2.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "3.7.*@stable"
@@ -1117,7 +1117,6 @@
                     "CodeClimate\\Bundle": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1134,7 +1133,10 @@
                 "codeclimate",
                 "coverage"
             ],
-            "time": "2014-12-29 16:17:04"
+            "support": {
+                "source": "https://github.com/chrismou/php-test-reporter/tree/master"
+            },
+            "time": "2015-01-12 21:02:11"
         },
         {
             "name": "phake/phake",
@@ -1951,26 +1953,26 @@
         },
         {
             "name": "symfony/console",
-            "version": "dev-master",
+            "version": "2.7.x-dev",
             "target-dir": "Symfony/Component/Console",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console.git",
-                "reference": "3741aee1418a64e5207f273cf85072a3b673a432"
+                "reference": "fdb3285803e812d97988470722129c28343f1415"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/3741aee1418a64e5207f273cf85072a3b673a432",
-                "reference": "3741aee1418a64e5207f273cf85072a3b673a432",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/fdb3285803e812d97988470722129c28343f1415",
+                "reference": "fdb3285803e812d97988470722129c28343f1415",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5.9"
+                "php": ">=5.3.9"
             },
             "require-dev": {
                 "psr/log": "~1.0",
-                "symfony/event-dispatcher": "~2.7|~3.0",
-                "symfony/process": "~2.7|~3.0"
+                "symfony/event-dispatcher": "~2.1|~3.0.0",
+                "symfony/process": "~2.1|~3.0.0"
             },
             "suggest": {
                 "psr/log": "For using the console logger",
@@ -1980,7 +1982,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "2.7-dev"
                 }
             },
             "autoload": {
@@ -2004,7 +2006,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "http://symfony.com",
-            "time": "2015-01-06 17:50:37"
+            "time": "2015-01-09 06:51:41"
         },
         {
             "name": "symfony/filesystem",

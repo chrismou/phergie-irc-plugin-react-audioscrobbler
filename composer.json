@@ -11,6 +11,12 @@
         "source": "https://github.com/chrismou/phergie-irc-plugin-react-audioscrobbler"
     },
     "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/chrismou/php-test-reporter"
+        }
+    ],
     "require": {
         "phergie/phergie-irc-bot-react": "~1",
         "phergie/phergie-irc-plugin-react-command": "~1.0",
