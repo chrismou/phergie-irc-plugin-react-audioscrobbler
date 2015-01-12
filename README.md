@@ -17,7 +17,7 @@ The recommended method of installation is [through composer](http://getcomposer.
 ```JSON
 {
     "require": {
-        "chrismou/phergie-irc-plugin-react-audioscrobbler": "dev-master"
+        "chrismou/phergie-irc-plugin-react-audioscrobbler": "~1"
     }
 }
 ```

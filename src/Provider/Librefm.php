@@ -13,7 +13,7 @@ namespace Chrismou\Phergie\Plugin\Audioscrobbler\Provider;
 use Phergie\Irc\Plugin\React\Command\CommandEvent as Event;
 
 /**
- * LibreFM provider for the Audioscrobbler plugin for Phergie
+ * Libre.fm provider for the Audioscrobbler plugin for Phergie
  *
  * @category Chrismou
  * @package Chrismou\Phergie\Plugin\Audioscrobbler\Provider
@@ -71,7 +71,6 @@ class Librefm extends Lastfm
      *
      * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
      * @param string $apiResponse
-     *
      * @return array
      */
     public function getNoResultsLines(Event $event, $apiResponse)
@@ -81,7 +80,6 @@ class Librefm extends Lastfm
 
     /**
      * Returns an array of lines for the help response
-     *
      * @return array
      */
     public function getHelpLines()

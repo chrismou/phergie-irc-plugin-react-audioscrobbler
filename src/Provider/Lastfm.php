@@ -13,7 +13,7 @@ namespace Chrismou\Phergie\Plugin\Audioscrobbler\Provider;
 use Phergie\Irc\Plugin\React\Command\CommandEvent as Event;
 
 /**
- * LastFM provider for the Audioscrobbler plugin for Phergie
+ * Last.fm provider for the Audioscrobbler plugin for Phergie
  *
  * @category Chrismou
  * @package Chrismou\Phergie\Plugin\Audioscrobbler\Provider
@@ -87,7 +87,6 @@ class Lastfm implements AudioscrobblerProviderInterface
      *
      * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
      * @param string $apiResponse
-     *
      * @return array
      */
     public function getSuccessLines(Event $event, $apiResponse)
@@ -117,7 +116,6 @@ class Lastfm implements AudioscrobblerProviderInterface
      *
      * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
      * @param string $apiResponse
-     *
      * @return array
      */
     public function getNoResultsLines(Event $event, $apiResponse)

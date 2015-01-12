@@ -104,7 +104,6 @@ class Plugin extends AbstractPlugin
      *
      * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
      * @param \Phergie\Irc\Bot\React\EventQueueInterface $queue
-     *
      * @return \WyriHaximus\Phergie\Plugin\Http\Request
      */
     protected function getApiRequest(Event $event, Queue $queue)
@@ -150,7 +149,6 @@ class Plugin extends AbstractPlugin
 
     /**
      * Return an array of lines to send back to IRC when the request fails
-     *
      * @return array
      */
     public function getRejectLines()
