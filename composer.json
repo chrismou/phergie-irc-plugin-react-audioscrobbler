@@ -15,6 +15,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/chrismou/php-test-reporter"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/chrismou/php-coveralls"
         }
     ],
     "require": {
