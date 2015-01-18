@@ -116,7 +116,7 @@ class Lastfm implements AudioscrobblerProviderInterface
     /**
      * Returns a message generated from the api request to use in the final response
      *
-     * @param object $response
+     * @param object $response`
      * @return string
      */
     protected function getSuccessMessage($response)
