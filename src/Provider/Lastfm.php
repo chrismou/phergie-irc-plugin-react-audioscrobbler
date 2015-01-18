@@ -104,22 +104,33 @@ class Lastfm implements AudioscrobblerProviderInterface
     {
         //var_dump($this->getApiRequestUrl($event));
         $response = json_decode($apiResponse);
-        if (isset($response->recenttracks)) { // results?
-            $track = (is_array($response->recenttracks->track)) ? $response->recenttracks->track[0] : $response->recenttracks->track;
-            $messages = array(sprintf(
-                "%s %s listening to %s by %s %s[ %s ]",
-                $response->recenttracks->{'@attr'}->user,
-                (isset($track->{'@attr'}->nowplaying)) ? "is" : "was",
-                $track->name,
-                $track->artist->{'#text'},
-                (!isset($track->{'@attr'}->nowplaying)) ? age($track->date->uts)."ago " : "",
-                $track->url
-            ));
+        if (isset($response->recenttracks)) {
+            $messages = array($this->getSuccessMessage($response));
         } else {
             $messages = $this->getNoResultsLines($event, $apiResponse);
         }
 
         return $messages;
+    }
+
+    /**
+     * Returns a message generated from the api request to use in the final response
+     *
+     * @param object $response
+     * @return string
+     */
+    protected function getSuccessMessage($response)
+    {
+        $track = (is_array($response->recenttracks->track)) ? $response->recenttracks->track[0] : $response->recenttracks->track;
+        return sprintf(
+            "%s %s listening to %s by %s %s[ %s ]",
+            $response->recenttracks->{'@attr'}->user,
+            (isset($track->{'@attr'}->nowplaying)) ? "is" : "was",
+            $track->name,
+            $track->artist->{'#text'},
+            (!isset($track->{'@attr'}->nowplaying)) ? age($track->date->uts)."ago " : "",
+            $track->url
+        );
     }
 
     /**

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Phergie plugin for returning the current or last played song for a user on last.fm or libre.fm (https://github.com/chrismou/phergie-irc-plugin-react-audioscrobbler)
  *
@@ -59,7 +60,7 @@ class Plugin extends AbstractPlugin
     }
 
     /**
-     *
+     * Return array of subscribed events
      *
      * @return array
      */
@@ -96,7 +97,7 @@ class Plugin extends AbstractPlugin
      * @param \Phergie\Irc\Bot\React\EventQueueInterface $queue
      */
     public function handleCommandHelp(Event $event, Queue $queue)
-    {
+        {
         $provider = $this->getProvider($event->getCustomCommand());
         $this->sendIrcResponse($event, $queue, $provider->getHelpLines());
     }
