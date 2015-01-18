@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Phergie plugin for returning the current or last played song for a user on last.fm or libre.fm (https://github.com/chrismou/phergie-irc-plugin-react-audioscrobbler)
  *
@@ -33,7 +34,8 @@ class Lastfm implements AudioscrobblerProviderInterface
     /**
      * @param string $apiKey
      */
-    function __construct($apiKey) {
+    public function __construct($apiKey)
+    {
         $this->apiKey = $apiKey;
     }
 
@@ -136,5 +138,4 @@ class Lastfm implements AudioscrobblerProviderInterface
             'Instructs the bot to query last.fm for this user\'s most recent listened track'
         );
     }
-
 }

@@ -16,7 +16,6 @@ use Phergie\Irc\Plugin\React\Command\CommandEvent as Event;
 use WyriHaximus\Phergie\Plugin\Http\Request as HttpRequest;
 use Chrismou\Phergie\Plugin\Audioscrobbler\Provider;
 
-
 /**
  * Plugin class.
  *
@@ -51,10 +50,11 @@ class Plugin extends AbstractPlugin
      */
     public function __construct(array $config = array())
     {
-        foreach($this->supportedProviders as $provider => $class) {
+        foreach ($this->supportedProviders as $provider => $class) {
             $providerConfig = isset($config[$provider])?$config[$provider]:null;
-            if ($class::validateConfig($providerConfig))
+            if ($class::validateConfig($providerConfig)) {
                 $this->validProviders[$provider] = new $class($providerConfig);
+            }
         }
     }
 
@@ -78,7 +78,8 @@ class Plugin extends AbstractPlugin
      * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
      * @param \Phergie\Irc\Bot\React\EventQueueInterface $queue
      */
-    public function handleCommand(Event $event, Queue $queue) {
+    public function handleCommand(Event $event, Queue $queue)
+    {
         $provider = $this->getProvider($event->getCustomCommand());
         if ($provider->validateParams($event->getCustomParams())) {
             $request = $this->getApiRequest($event, $queue, $provider);
@@ -94,7 +95,8 @@ class Plugin extends AbstractPlugin
      * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
      * @param \Phergie\Irc\Bot\React\EventQueueInterface $queue
      */
-    public function handleCommandHelp(Event $event, Queue $queue) {
+    public function handleCommandHelp(Event $event, Queue $queue)
+    {
         $provider = $this->getProvider($event->getCustomCommand());
         $this->sendIrcResponse($event, $queue, $provider->getHelpLines());
     }

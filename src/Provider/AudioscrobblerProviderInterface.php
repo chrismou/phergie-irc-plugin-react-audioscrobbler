@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Phergie plugin for returning the current or last played song for a user on last.fm or libre.fm (https://github.com/chrismou/phergie-irc-plugin-react-audioscrobbler)
  *
@@ -27,7 +28,7 @@ interface AudioscrobblerProviderInterface
      *
      * @return true|false
      */
-    static function validateConfig($config);
+    public static function validateConfig($config);
 
     /**
      * Return the url for the API request
@@ -36,7 +37,7 @@ interface AudioscrobblerProviderInterface
      *
      * @return string
      */
-    function getApiRequestUrl(CommandEvent $event);
+    public function getApiRequestUrl(CommandEvent $event);
 
     /**
      * Validate the provided parameters
@@ -45,7 +46,7 @@ interface AudioscrobblerProviderInterface
      *
      * @return true|false
      */
-    function validateParams(array $params);
+    public function validateParams(array $params);
 
     /**
      * Returns an array of lines to send back to IRC when the http request is successful
@@ -55,7 +56,7 @@ interface AudioscrobblerProviderInterface
      *
      * @return array
      */
-    function getSuccessLines(CommandEvent $event, $apiResponse);
+    public function getSuccessLines(CommandEvent $event, $apiResponse);
 
     /**
      * Returns an array of lines for the help response

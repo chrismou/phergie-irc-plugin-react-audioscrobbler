@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Phergie plugin for returning the current or last played song for a user on last.fm or libre.fm (https://github.com/chrismou/phergie-irc-plugin-react-audioscrobbler)
  *
@@ -28,7 +29,7 @@ class Librefm extends Lastfm
     /**
      * @param string $config
      */
-    function __construct($config)
+    public function __construct($config)
     {
 
     }
@@ -90,5 +91,4 @@ class Librefm extends Lastfm
             'Instructs the bot to query libre.fm for this user\'s most recent listened track'
         );
     }
-
 }
