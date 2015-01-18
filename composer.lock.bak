@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "04256855e8ed42900176fe03cb310eab",
+    "hash": "3a478c377b0f49b7efa27a52dba5a00a",
     "packages": [
         {
             "name": "evenement/evenement",
@@ -931,12 +931,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/EventDispatcher.git",
-                "reference": "7a26717d431dfb092198d7c55f06788b2de5aaf7"
+                "reference": "eab88ace7a54741087fe4e0c7acd737d1f6186bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/7a26717d431dfb092198d7c55f06788b2de5aaf7",
-                "reference": "7a26717d431dfb092198d7c55f06788b2de5aaf7",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/eab88ace7a54741087fe4e0c7acd737d1f6186bf",
+                "reference": "eab88ace7a54741087fe4e0c7acd737d1f6186bf",
                 "shasum": ""
             },
             "require": {
@@ -980,7 +980,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "http://symfony.com",
-            "time": "2015-01-16 15:11:56"
+            "time": "2015-01-09 06:51:41"
         },
         {
             "name": "wyrihaximus/phergie-dns",
@@ -1198,12 +1198,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "5aaadd58aab6fd96200596820994641cb685f4aa"
+                "reference": "29326b2455f383483d0fed3b7da9890177c33781"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/5aaadd58aab6fd96200596820994641cb685f4aa",
-                "reference": "5aaadd58aab6fd96200596820994641cb685f4aa",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/29326b2455f383483d0fed3b7da9890177c33781",
+                "reference": "29326b2455f383483d0fed3b7da9890177c33781",
                 "shasum": ""
             },
             "require": {
@@ -1252,7 +1252,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-01-15 05:45:24"
+            "time": "2015-01-01 09:33:48"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -1393,12 +1393,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "db32c18eba00b121c145575fcbcd4d4d24e6db74"
+                "reference": "091ec6b68b31a15da4e41ba375c6f77b7f15c2b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/db32c18eba00b121c145575fcbcd4d4d24e6db74",
-                "reference": "db32c18eba00b121c145575fcbcd4d4d24e6db74",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/091ec6b68b31a15da4e41ba375c6f77b7f15c2b4",
+                "reference": "091ec6b68b31a15da4e41ba375c6f77b7f15c2b4",
                 "shasum": ""
             },
             "require": {
@@ -1411,7 +1411,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.4-dev"
+                    "dev-master": "1.3-dev"
                 }
             },
             "autoload": {
@@ -1434,7 +1434,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2015-01-17 09:51:32"
+            "time": "2015-01-02 15:57:31"
         },
         {
             "name": "phpunit/phpunit",
@@ -1956,12 +1956,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Console.git",
-                "reference": "36d66cad2836b744f658e1824eeb3f0f44e39a95"
+                "reference": "3741aee1418a64e5207f273cf85072a3b673a432"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Console/zipball/36d66cad2836b744f658e1824eeb3f0f44e39a95",
-                "reference": "36d66cad2836b744f658e1824eeb3f0f44e39a95",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/3741aee1418a64e5207f273cf85072a3b673a432",
+                "reference": "3741aee1418a64e5207f273cf85072a3b673a432",
                 "shasum": ""
             },
             "require": {
@@ -2004,7 +2004,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "http://symfony.com",
-            "time": "2015-01-16 15:47:11"
+            "time": "2015-01-06 17:50:37"
         },
         {
             "name": "symfony/filesystem",
@@ -2107,12 +2107,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/Yaml.git",
-                "reference": "f562c11a31743e3ed8d972fcadd1a90022c5c7e4"
+                "reference": "16c97a1567ef607b16f843d3ebc99f113cc1957e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Yaml/zipball/f562c11a31743e3ed8d972fcadd1a90022c5c7e4",
-                "reference": "f562c11a31743e3ed8d972fcadd1a90022c5c7e4",
+                "url": "https://api.github.com/repos/symfony/Yaml/zipball/16c97a1567ef607b16f843d3ebc99f113cc1957e",
+                "reference": "16c97a1567ef607b16f843d3ebc99f113cc1957e",
                 "shasum": ""
             },
             "require": {
@@ -2145,7 +2145,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
-            "time": "2015-01-16 14:55:54"
+            "time": "2015-01-09 18:07:24"
         }
     ],
     "aliases": [],
@@ -2158,3 +2158,4 @@
     "platform": [],
     "platform-dev": []
 }
+
