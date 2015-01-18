@@ -70,18 +70,27 @@ class Lastfm implements AudioscrobblerProviderInterface
      */
     public function getApiRequestUrl(Event $event)
     {
+        return sprintf("%s?%s", $this->apiUrl, http_build_query($this->getApiRequestParams($event)));
+    }
+
+    /**
+     * Returns a querystring parameters array
+     *
+     * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
+     * @return array
+     */
+    protected function getApiRequestParams(Event $event)
+    {
         $params = $event->getCustomParams();
         $user = $params[0];
 
-        $querystringParams = array(
+        return array(
             'format' => 'json',
             'api_key' => $this->apiKey,
             'method' => 'user.getrecenttracks',
             'user' => $user,
             'limit' => '1'
         );
-
-        return sprintf("%s?%s", $this->apiUrl, http_build_query($querystringParams));
     }
 
     /**

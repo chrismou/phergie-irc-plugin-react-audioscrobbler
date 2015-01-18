@@ -54,17 +54,10 @@ class Librefm extends Lastfm
      */
     public function getApiRequestUrl(Event $event)
     {
-        $params = $event->getCustomParams();
-        $user = $params[0];
+        $params = $this->getApiRequestParams($event);
+        unset($params['api_key']);
 
-        $querystringParams = array(
-            'format' => 'json',
-            'method' => 'user.getrecenttracks',
-            'user' => $user,
-            'limit' => '1'
-        );
-
-        return sprintf("%s?%s", $this->apiUrl, http_build_query($querystringParams));
+        return sprintf("%s?%s", $this->apiUrl, http_build_query($params));
     }
 
     /**
