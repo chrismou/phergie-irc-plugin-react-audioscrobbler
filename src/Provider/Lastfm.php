@@ -59,7 +59,7 @@ class Lastfm implements AudioscrobblerProviderInterface
      */
     public function validateParams(array $params)
     {
-        return (count($params)===1) ? true : false;
+        return (count($params) === 1) ? true : false;
     }
 
     /**
@@ -128,7 +128,7 @@ class Lastfm implements AudioscrobblerProviderInterface
             (isset($track->{'@attr'}->nowplaying)) ? "is" : "was",
             $track->name,
             $track->artist->{'#text'},
-            (!isset($track->{'@attr'}->nowplaying)) ? age($track->date->uts)."ago " : "",
+            (!isset($track->{'@attr'}->nowplaying)) ? age($track->date->uts) . "ago " : "",
             $track->url
         );
     }

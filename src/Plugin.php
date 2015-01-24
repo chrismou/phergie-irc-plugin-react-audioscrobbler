@@ -36,8 +36,8 @@ class Plugin extends AbstractPlugin
      * @var array
      */
     protected $supportedProviders = array(
-        "lastfm"    => "Chrismou\\Phergie\\Plugin\\Audioscrobbler\\Provider\\Lastfm",
-        "librefm"   => "Chrismou\\Phergie\\Plugin\\Audioscrobbler\\Provider\\Librefm"
+        "lastfm" => "Chrismou\\Phergie\\Plugin\\Audioscrobbler\\Provider\\Lastfm",
+        "librefm" => "Chrismou\\Phergie\\Plugin\\Audioscrobbler\\Provider\\Librefm"
     );
 
     /**
@@ -52,7 +52,7 @@ class Plugin extends AbstractPlugin
     public function __construct(array $config = array())
     {
         foreach ($this->supportedProviders as $provider => $class) {
-            $providerConfig = isset($config[$provider])?$config[$provider]:null;
+            $providerConfig = isset($config[$provider]) ? $config[$provider] : null;
             if ($class::validateConfig($providerConfig)) {
                 $this->validProviders[$provider] = new $class($providerConfig);
             }
@@ -68,7 +68,7 @@ class Plugin extends AbstractPlugin
     {
         $subscribedEvents = array();
         foreach ($this->validProviders as $provider => $class) {
-            $subscribedEvents['command.'.$provider] = 'handleCommand';
+            $subscribedEvents['command.' . $provider] = 'handleCommand';
         }
         return $subscribedEvents;
     }
@@ -97,7 +97,7 @@ class Plugin extends AbstractPlugin
      * @param \Phergie\Irc\Bot\React\EventQueueInterface $queue
      */
     public function handleCommandHelp(Event $event, Queue $queue)
-        {
+    {
         $provider = $this->getProvider($event->getCustomCommand());
         $this->sendIrcResponse($event, $queue, $provider->getHelpLines());
     }

@@ -68,8 +68,8 @@ class PluginTest extends \PHPUnit_Framework_TestCase
         Phake::when($this->event)->getCustomCommand()->thenReturn("lastfm");
         Phake::when($this->event)->getCustomParams()->thenReturn(array("chrismou"));
         $httpConfig = $this->doCommandTest();
-        $this->doResolveTest(file_get_contents(__DIR__.'/_data/LastfmResults.json'), $httpConfig);
-        $this->doResolveNoResultsTest(file_get_contents(__DIR__.'/_data/LastfmNoResults.json'), $httpConfig);
+        $this->doResolveTest(file_get_contents(__DIR__ . '/_data/LastfmResults.json'), $httpConfig);
+        $this->doResolveNoResultsTest(file_get_contents(__DIR__ . '/_data/LastfmNoResults.json'), $httpConfig);
         $this->doRejectTest($httpConfig);
     }
 
@@ -82,8 +82,8 @@ class PluginTest extends \PHPUnit_Framework_TestCase
         Phake::when($this->event)->getCustomCommand()->thenReturn("librefm");
         Phake::when($this->event)->getCustomParams()->thenReturn(array("kabniel"));
         $httpConfig = $this->doCommandTest();
-        $this->doResolveTest(file_get_contents(__DIR__.'/_data/LibrefmResults.json'), $httpConfig);
-        $this->doResolveNoResultsTest(file_get_contents(__DIR__.'/_data/LibrefmNoResults.json'), $httpConfig);
+        $this->doResolveTest(file_get_contents(__DIR__ . '/_data/LibrefmResults.json'), $httpConfig);
+        $this->doResolveNoResultsTest(file_get_contents(__DIR__ . '/_data/LibrefmNoResults.json'), $httpConfig);
         $this->doRejectTest($httpConfig);
     }
 
@@ -109,7 +109,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      * Tests handleCommand() is doing what it's supposed to
      * @return array $httpConfig
      */
-    protected function doCommandInvalidParamsTest(array $params=array())
+    protected function doCommandInvalidParamsTest(array $params = array())
     {
         // GRab a fresh queue instance to test on
         $queue = $this->getMockQueue();
@@ -258,7 +258,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
      */
     protected function getPlugin(array $config = array())
     {
-        $plugin = new Plugin(array("lastfm"=>"dummy"));
+        $plugin = new Plugin(array("lastfm" => "dummy"));
         $plugin->setEventEmitter(Phake::mock('\Evenement\EventEmitterInterface'));
         $plugin->setLogger(Phake::mock('\Psr\Log\LoggerInterface'));
         return $plugin;
