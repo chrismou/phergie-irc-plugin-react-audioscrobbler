@@ -64,7 +64,6 @@ class Librefm extends Lastfm
      * Returns an array of lines to send back to IRC when there are no results
      *
      * @param \Phergie\Irc\Plugin\React\Command\CommandEvent $event
-     * @param string $apiResponse
      * @return array
      */
     public function getNoResultsLines(Event $event)
