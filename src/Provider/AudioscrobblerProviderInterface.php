@@ -22,11 +22,11 @@ use Phergie\Irc\Plugin\React\Command\CommandEvent;
 interface AudioscrobblerProviderInterface
 {
     /**
-     * Validate the provided parameters
+     * Validate the provided config
      *
-     * @param array $params
+     * @param array $config
      *
-     * @return true|false
+     * @return boolean
      */
     public static function validateConfig($config);
 
@@ -44,7 +44,7 @@ interface AudioscrobblerProviderInterface
      *
      * @param array $params
      *
-     * @return true|false
+     * @return boolean
      */
     public function validateParams(array $params);
 

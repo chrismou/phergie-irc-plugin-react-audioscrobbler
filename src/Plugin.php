@@ -83,10 +83,10 @@ class Plugin extends AbstractPlugin
     {
         $provider = $this->getProvider($event->getCustomCommand());
         if ($provider->validateParams($event->getCustomParams())) {
-            $request = $this->getApiRequest($event, $queue, $provider);
+            $request = $this->getApiRequest($event, $queue);
             $this->getEventEmitter()->emit('http.request', array($request));
         } else {
-            $this->handleCommandhelp($event, $queue, $provider);
+            $this->handleCommandhelp($event, $queue);
         }
     }
 
@@ -114,12 +114,12 @@ class Plugin extends AbstractPlugin
         $provider = $this->getProvider($event->getCustomCommand());
         $self = $this;
         return new HttpRequest(array(
-            'url' => $provider->getApiRequestUrl($event, $queue),
+            'url' => $provider->getApiRequestUrl($event),
             'resolveCallback' => function ($data) use ($self, $event, $queue, $provider) {
                 $self->sendIrcResponse($event, $queue, $provider->getSuccessLines($event, $data));
             },
             'rejectCallback' => function ($error) use ($self, $event, $queue, $provider) {
-                $self->sendIrcResponse($event, $queue, $self->getRejectLines($event, $error));
+                $self->sendIrcResponse($event, $queue, $self->getRejectLines());
             }
         ));
     }

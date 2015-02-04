@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Phergie plugin for returning the current or last played song for a user on last.fm or libre.fm (https://github.com/chrismou/phergie-irc-plugin-react-audioscrobbler)
+ * Phergie plugin for returning the current or last played song for a user on last.fm or libre.fm
  *
  * @link https://github.com/chrismou/phergie-irc-plugin-react-audioscrobbler for the canonical source repository
  * @copyright Copyright (c) 2014 Chris Chrisostomou (http://mou.me)
@@ -38,7 +38,7 @@ class Librefm extends Lastfm
      * Validate the provided config
      *
      * @param array $config
-     * @return true|false
+     * @return boolean
      */
     public static function validateConfig($config)
     {
