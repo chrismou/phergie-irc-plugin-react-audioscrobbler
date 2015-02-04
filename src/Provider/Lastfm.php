@@ -107,7 +107,7 @@ class Lastfm implements AudioscrobblerProviderInterface
         if (isset($response->recenttracks)) {
             $messages = array($this->getSuccessMessage($response));
         } else {
-            $messages = $this->getNoResultsLines($event, $apiResponse);
+            $messages = $this->getNoResultsLines($event);
         }
 
         return $messages;
@@ -140,9 +140,9 @@ class Lastfm implements AudioscrobblerProviderInterface
      * @param string $apiResponse
      * @return array
      */
-    public function getNoResultsLines(Event $event, $apiResponse)
+    public function getNoResultsLines(Event $event)
     {
-        return array('This user does not exist on last.fm');
+        return array(sprintf('%s does not exist on last.fm', $event->getCustomParams()[0]));
     }
 
     /**

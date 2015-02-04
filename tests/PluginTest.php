@@ -167,6 +167,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     protected function doResolveNoResultsTest($data, array $httpConfig)
     {
         $this->doPreCallbackSetup();
+        Phake::when($this->event)->getCustomParams()->thenReturn(array("Jigglypuff"));
         $callback = $httpConfig['resolveCallback'];
         $responseLines = $this->getProvider()->getSuccessLines($this->event, $data);
         $this->doPostCallbackTests($data, $callback, $responseLines);

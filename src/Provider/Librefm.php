@@ -67,9 +67,9 @@ class Librefm extends Lastfm
      * @param string $apiResponse
      * @return array
      */
-    public function getNoResultsLines(Event $event, $apiResponse)
+    public function getNoResultsLines(Event $event)
     {
-        return array('This user does not exist on libre.fm');
+        return array(sprintf('%s does not exist on last.fm', $event->getCustomParams()[0]));
     }
 
     /**

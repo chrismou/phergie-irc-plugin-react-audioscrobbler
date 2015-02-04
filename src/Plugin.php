@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Phergie plugin for returning the current or last played song for a user on last.fm or libre.fm (https://github.com/chrismou/phergie-irc-plugin-react-audioscrobbler)
+ * Phergie plugin for returning the current or last played song for a user on last.fm or libre.fm
  *
  * @link https://github.com/chrismou/phergie-irc-plugin-react-audioscrobbler for the canonical source repository
  * @copyright Copyright (c) 2014 Chris Chrisostomou (http://mou.me)
@@ -119,7 +119,7 @@ class Plugin extends AbstractPlugin
                 $self->sendIrcResponse($event, $queue, $provider->getSuccessLines($event, $data));
             },
             'rejectCallback' => function ($error) use ($self, $event, $queue, $provider) {
-                $self->sendIrcResponse($event, $queue, $self->getRejectLines());
+                $self->sendIrcResponse($event, $queue, $self->getRejectLines($error));
             }
         ));
     }
@@ -154,7 +154,7 @@ class Plugin extends AbstractPlugin
      * Return an array of lines to send back to IRC when the request fails
      * @return array
      */
-    public function getRejectLines()
+    public function getRejectLines($error)
     {
         return array('Something went wrong... ಠ_ಠ');
     }
