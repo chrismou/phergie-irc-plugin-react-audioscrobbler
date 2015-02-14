@@ -18,7 +18,6 @@
         "issues": "https://github.com/chrismou/phergie-irc-plugin-react-audioscrobbler/issues",
         "source": "https://github.com/chrismou/phergie-irc-plugin-react-audioscrobbler"
     },
-    "minimum-stability": "dev",
     "require": {
         "phergie/phergie-irc-bot-react": "~1",
         "phergie/phergie-irc-plugin-react-command": "~1.0",
@@ -41,6 +40,11 @@
     "autoload-dev": {
         "psr-4": {
             "Chrismou\\Phergie\\Tests\\Plugin\\Audioscrobbler\\": "tests"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+          "dev-master": "1.0-dev"
         }
     }
 }
