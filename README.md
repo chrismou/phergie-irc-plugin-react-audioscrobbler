@@ -42,11 +42,13 @@ The plugin activates lastfm when it sees you've included a lastfm config, so in 
 to show the plugin in it's command list , you'll need to pass a mock config file:
 
 ```php
-'plugins' => array(
-    new \Chrismou\Phergie\Plugin\Audioscrobbler\Plugin(array(
-        'lastfm' => true
-    )),
-)
+new \Phergie\Irc\Plugin\React\CommandHelp\Plugin(array(
+    'plugins' => array(
+        new \Chrismou\Phergie\Plugin\Audioscrobbler\Plugin(array(
+            'lastfm' => true
+        )),
+    )
+))
 ```
 
 Adding this line to your CommandHelp config should force the lastfm command to be displayed.
