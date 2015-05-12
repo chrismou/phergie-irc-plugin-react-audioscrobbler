@@ -36,6 +36,21 @@ new \Chrismou\Phergie\Plugin\Audioscrobbler\Plugin(array(
 ))
 ```
 
+## CommandHelp compatibility
+
+The plugin activates lastfm when it sees you've included a lastfm config, so in order to get [CommandHelp](http://github.com/phergie/phergie-irc-plugin-react-commandhelp/) 
+to show the plugin in it's command list , you'll need to pass a mock config file:
+
+```php
+'plugins' => array(
+    new \Chrismou\Phergie\Plugin\Audioscrobbler\Plugin(array(
+        'lastfm' => true
+    )),
+)
+```
+
+Adding this line to your CommandHelp config should force the lastfm command to be displayed.
+
 ## Tests
 
 To run the unit test suite:
