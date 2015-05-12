@@ -69,6 +69,7 @@ class Plugin extends AbstractPlugin
         $subscribedEvents = array();
         foreach ($this->validProviders as $provider => $class) {
             $subscribedEvents['command.' . $provider] = 'handleCommand';
+            $subscribedEvents['command.' . $provider . '.help'] = 'handleCommandHelp';
         }
         return $subscribedEvents;
     }
