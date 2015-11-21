@@ -15,7 +15,6 @@ use Phergie\Irc\Bot\React\AbstractPlugin;
 use Phergie\Irc\Bot\React\EventQueueInterface as Queue;
 use Phergie\Irc\Plugin\React\Command\CommandEvent as Event;
 use Phergie\Plugin\Http\Request as HttpRequest;
-//use Chrismou\Phergie\Plugin\Audioscrobbler\Provider;
 
 /**
  * Plugin class.
