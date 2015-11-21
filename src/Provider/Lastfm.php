@@ -102,7 +102,6 @@ class Lastfm implements AudioscrobblerProviderInterface
      */
     public function getSuccessLines(Event $event, $apiResponse)
     {
-        //var_dump($this->getApiRequestUrl($event));
         $response = json_decode($apiResponse);
         if (isset($response->recenttracks)) {
             $messages = array($this->getSuccessMessage($response));
