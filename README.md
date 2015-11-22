@@ -15,11 +15,7 @@ last.fm or libre.fm.  By default, the plugin responds to the commands "lastfm us
 The recommended method of installation is [through composer](http://getcomposer.org).
 
 ```JSON
-{
-    "require": {
-        "chrismou/phergie-irc-plugin-react-audioscrobbler": "~1"
-    }
-}
+composer require chrismou/phergie-irc-plugin-react-audioscrobbler
 ```
 
 See Phergie documentation for more information on
