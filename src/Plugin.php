@@ -119,7 +119,7 @@ class Plugin extends AbstractPlugin
             'resolveCallback' => function (Response $response) use ($self, $event, $queue, $provider) {
                 $self->sendIrcResponse($event, $queue, $provider->getSuccessLines($event, $response->getBody()));
             },
-            'rejectCallback' => function (Response $error) use ($self, $event, $queue, $provider) {
+            'rejectCallback' => function (Response $error) use ($self, $event, $queue) {
                 $self->sendIrcResponse($event, $queue, $self->getRejectLines($error->getBody()));
             }
         ));
