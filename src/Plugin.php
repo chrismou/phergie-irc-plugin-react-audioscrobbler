@@ -14,6 +14,7 @@ namespace Chrismou\Phergie\Plugin\Audioscrobbler;
 use Phergie\Irc\Bot\React\AbstractPlugin;
 use Phergie\Irc\Bot\React\EventQueueInterface as Queue;
 use Phergie\Irc\Plugin\React\Command\CommandEvent as Event;
+use GuzzleHttp\Message\Response;
 use Phergie\Plugin\Http\Request as HttpRequest;
 
 /**
@@ -115,11 +116,11 @@ class Plugin extends AbstractPlugin
         $self = $this;
         return new HttpRequest(array(
             'url' => $provider->getApiRequestUrl($event),
-            'resolveCallback' => function ($data) use ($self, $event, $queue, $provider) {
-                $self->sendIrcResponse($event, $queue, $provider->getSuccessLines($event, $data));
+            'resolveCallback' => function (Response $response) use ($self, $event, $queue, $provider) {
+                $self->sendIrcResponse($event, $queue, $provider->getSuccessLines($event, $response->getBody()));
             },
-            'rejectCallback' => function ($error) use ($self, $event, $queue, $provider) {
-                $self->sendIrcResponse($event, $queue, $self->getRejectLines($error));
+            'rejectCallback' => function (Response $error) use ($self, $event, $queue, $provider) {
+                $self->sendIrcResponse($event, $queue, $self->getRejectLines($error->getBody()));
             }
         ));
     }

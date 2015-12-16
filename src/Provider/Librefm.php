@@ -68,7 +68,7 @@ class Librefm extends Lastfm
      */
     public function getNoResultsLines(Event $event)
     {
-        return array(sprintf('%s does not exist on last.fm', $event->getCustomParams()[0]));
+        return array(sprintf('%s does not exist on libre.fm', $event->getCustomParams()[0]));
     }
 
     /**
