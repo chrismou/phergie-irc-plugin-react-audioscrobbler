@@ -23,33 +23,31 @@ use Chrismou\Phergie\Plugin\Audioscrobbler\Provider as Provider;
 class PluginTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var \Chrismou\Phergie\Plugin\Audioscrobbler\Plugin
+     * @var \Phake_IMock
      */
     protected $plugin;
 
     /**
-     * @var \Phergie\Irc\Plugin\React\Command\CommandEvent
+     * @var \Phake_IMock
      */
     protected $event;
 
     /**
-     * @var \Phergie\Irc\Bot\React\EventQueueInterface
+     * @var \Phake_IMock
      */
     protected $queue;
+
+    /**
+     * @var \Phake_IMock
+     */
+    protected $apiResponse;
 
     protected function setUp()
     {
         $this->event = $this->getMockEvent();
         $this->queue = $this->getMockQueue();
+        $this->apiResponse = Phake::mock('GuzzleHttp\Message\Response');
     }
-
-    /*function testSomething()
-    {
-        $json = file_get_contents(__DIR__.'/_data/LastfmResults.json');
-        $response = json_decode($json);
-        var_dump($response->recenttracks->track[0]);
-        exit;
-    }*/
 
     /**
      * Tests that getSubscribedEvents() returns an array.
@@ -147,7 +145,7 @@ class PluginTest extends \PHPUnit_Framework_TestCase
     /**
      * Tests handCommand() handles resolveCallback correctly
      *
-     * @param string $command
+     * @param string $data
      * @param array $httpConfig
      */
     protected function doResolveTest($data, array $httpConfig)
@@ -213,8 +211,9 @@ class PluginTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInternalType('callable', $callback);
 
+        Phake::when($this->apiResponse)->getBody()->thenReturn($data);
         // Run the resolveCallback callback
-        $callback($data, $this->event, $this->queue);
+        $callback($this->apiResponse, $this->event, $this->queue);
 
         // Verify if each expected line was sent
         foreach ($responseLines as $responseLine) {
