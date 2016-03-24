@@ -120,7 +120,10 @@ class Lastfm implements AudioscrobblerProviderInterface
      */
     protected function getSuccessMessage($response)
     {
-        $track = (is_array($response->recenttracks->track)) ? $response->recenttracks->track[0] : $response->recenttracks->track;
+        $track = (is_array($response->recenttracks->track))
+            ? $response->recenttracks->track[0]
+            : $response->recenttracks->track;
+
         return sprintf(
             "%s %s listening to %s by %s %s[ %s ]",
             $response->recenttracks->{'@attr'}->user,

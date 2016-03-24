@@ -5,6 +5,7 @@
 [![Build Status](https://scrutinizer-ci.com/g/chrismou/phergie-irc-plugin-react-audioscrobbler/badges/build.png?b=master)](https://scrutinizer-ci.com/g/chrismou/phergie-irc-plugin-react-audioscrobbler/build-status/master)
 [![Test Coverage](https://codeclimate.com/github/chrismou/phergie-irc-plugin-react-audioscrobbler/badges/coverage.svg)](https://codeclimate.com/github/chrismou/phergie-irc-plugin-react-audioscrobbler/coverage)
 [![Code Climate](https://codeclimate.com/github/chrismou/phergie-irc-plugin-react-audioscrobbler/badges/gpa.svg)](https://codeclimate.com/github/chrismou/phergie-irc-plugin-react-audioscrobbler)
+[![Buy me a beer](https://img.shields.io/badge/donate-PayPal-019CDE.svg)](https://www.paypal.me/chrismou)
 
 ## About
 [Phergie](http://github.com/phergie/phergie-irc-bot-react/) plugin for returning the current or last played song for a user on 
